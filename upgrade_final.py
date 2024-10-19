@@ -7,14 +7,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 import re
 
-salary_info = {
-    'П0_0': 0, 'П0_1': 400, 'П0_2': 400, 'П0_3': 450, 'П0_4': 500, 'П0_5': 550, 'П0_6': 600, 'П0_7': 650, 'П0_8': 700,
-    'П0_9': 750, 'П0_10': 800, 'П0_Prob': 500,
-    'П1_0': 0, 'П1_1': 400, 'П1_2': 400, 'П1_3': 450, 'П1_4': 500, 'П1_5': 550, 'П1_6': 600, 'П1_7': 650, 'П1_8': 700,
-    'П1_9': 750, 'П1_10': 800, 'П1_Prob': 500,
-    'П2_0': 0, 'П2_1': 400, 'П2_2': 400, 'П2_3': 450, 'П2_4': 500, 'П2_5': 550, 'П2_6': 600, 'П2_7': 650, 'П2_8': 700,
-    'П2_9': 750, 'П2_10': 800, 'П2_Prob': 500,
-}
 
 # Инициализация Chrome с необходимыми параметрами
 chrome_options = Options()
@@ -22,7 +14,7 @@ chrome_options = Options()
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 # URL для доступа к страницам
-url = 'https://kb-kubik.t8s.ru/Table/TeachersTime?Submitted=True&Page=0&School=46&BeginDate=2024-10-01T00%3A00%3A00&EndDate=2024-10-15T00%3A00%3A00&BeginTime=&EndTime=&Format=DayTimeEntity&Step=0%3A00&Week=false&UnitedColumns=false&Inverted=false'
+url = 'https://kb-kubik.t8s.ru/Table/TeachersTime?Submitted=True&Page=0&School=&BeginDate=2024-10-01T00%3A00%3A00&EndDate=2024-10-02T00%3A00%3A00&BeginTime=&EndTime=&Format=DayTimeEntity&Step=0%3A00&Week=false&UnitedColumns=false&Inverted=false'
 
 try:
     driver.get(url)
@@ -95,7 +87,7 @@ try:
             driver.get(profile_link)
 
             # Ожидание загрузки профиля
-            WebDriverWait(driver, 60).until(
+            WebDriverWait(driver, 5).until(
                 EC.presence_of_element_located((By.CSS_SELECTOR, 'div[data-collapsable="100"]'))
             )
 
